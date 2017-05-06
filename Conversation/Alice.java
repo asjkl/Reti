@@ -6,6 +6,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.util.Random;
 
 public class Alice {
 	public static void main(String[] args) throws UnknownHostException, IOException {
@@ -17,7 +18,8 @@ public class Alice {
 		DataOutputStream mandaAlServer=new DataOutputStream(alice.getOutputStream());
 		
 		while(true){
-			mandaAlServer.writeBytes("HELLO WORLD"+ '\n');
+			String tmp=new Random().nextInt(27)+"a";
+			mandaAlServer.writeBytes(tmp+ '\n');
 			contatoreStampe++;
 			 System.out.println(contatoreStampe);
 		}

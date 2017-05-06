@@ -19,7 +19,14 @@ public class Server {
 		new Thread() {
 			public void run() {
 				while (true) {
-					System.out.println(lista.size()+" "+dalCliente.size());
+					System.out.println(lista.size());
+					for(int a = 0; a < lista.size(); a++){
+						if(lista.get(a).isClosed()){
+							lista.remove(a);
+							a--;
+						}
+					}
+					
 					for (int a = 0; a < lista.size(); a++) {
 						try {
 							if (dalCliente.size() == lista.size()) {
@@ -27,6 +34,7 @@ public class Server {
 									String read = dalCliente.get(a).readLine();
 									for (int b = 0; b < lista.size(); b++) {
 										if (a != b) {
+											//System.out.println("INVIO STRINGA "+read);
 											fuoriAlCliente.get(b).writeBytes(read + '\n');
 										}
 									}
